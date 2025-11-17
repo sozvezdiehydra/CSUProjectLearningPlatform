@@ -1,0 +1,36 @@
+.markdown h1 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.markdown h2 {
+  font-size: 22px;
+  margin: 20px 0 10px;
+}
+
+.markdown p {
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.markdown ul {
+  margin: 12px 0 12px 20px;
+}
+
+.markdown li {
+  margin-bottom: 6px;
+}
+
+.markdown code {
+  background: #f3f4f6;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.markdown pre {
+  background: #1e1e1e;
+  padding: 12px;
+  color: white;
+  overflow-x: auto;
+  border-radius: 8px;
+}
