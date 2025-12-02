@@ -1,25 +1,23 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { contentMap } from "../../assets/mockcontent";
+import { getTopicsByLanguage } from "../../shared/api/topicsApi";
 
 
-type Topic = { id: number; title: string; content?: string };
+type Topic = { id: number; title: string; content: string };
 
 export default function TopicsPage() {
   const { languageSlug } = useParams<{ languageSlug: string }>();
+  const [topics, setTopics] = useState<Topic[]>([]);
+  const [activeId, setActiveId] = useState<number | null>(null);
 
-  // получаем ебучий контент
-  const content = contentMap[languageSlug as string];
-
-  const topics: Topic[] = content?.topics ?? [];
-
-  const [activeId, setActiveId] = useState<number | null>(
-    topics.length ? topics[0].id : null
-  );
-
-  React.useEffect(() => {
-    setActiveId(topics.length ? topics[0].id : null);
-  }, [languageSlug, topics.length]);
+  useEffect(() => {
+    if (languageSlug) {
+      getTopicsByLanguage(languageSlug).then((data) => {
+        setTopics(data);
+        setActiveId(data.length ? data[0].id : null);
+      });
+    }
+  }, [languageSlug]);
 
   const activeTopic = topics.find((t) => t.id === activeId) || null;
 
@@ -29,8 +27,8 @@ export default function TopicsPage() {
         <div className="card-header">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
-              <h3 className="header-title">Изучалка 3000</h3>
-              <div className="header-sub">Курс — {languageSlug}</div>
+              <h3 className="header-title">Progalingo</h3>
+              <div className="header-sub">Курс — {languageSlug?.toUpperCase()}</div>
             </div>
           </div>
         </div>
@@ -63,7 +61,6 @@ export default function TopicsPage() {
               {activeTopic ? (
                 <>
                   <h2>{activeTopic.title}</h2>
-                  <p>{content.description}</p>
                   <p style={{ marginTop: 15, whiteSpace: "pre-line" }}>{activeTopic.content}</p>
                 </>
               ) : (

@@ -9,7 +9,7 @@ export default function HomePage() {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #c5b8db, #F6C4ED)",
+        background: "linear-gradient(135deg, #afea66, #4ba279)",
         padding: "20px",
       }}
     >

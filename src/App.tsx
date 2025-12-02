@@ -11,7 +11,7 @@ export default function App() {
     <div>
       <header style={{ padding: 16, borderBottom: "1px solid #e5e5e5" }}>
         <Link to="/" style={{ textDecoration: "none", color: "#333" }}>
-          <h2>Обучалка</h2>
+          <h2>Progalingo</h2>
         </Link>
       </header>
       <main>
